@@ -1,0 +1,658 @@
+/*
+Theme Name: HiiTECH Studio
+Theme URI: https://hiitech.ir
+Author: HiiTECH Studio
+Description: قالب اختصاصی وردپرس استودیوی فناوری، هوش مصنوعی و مهندسی محصول هایتک (HiiTECH Studio)
+Version: 1.0.0
+Text Domain: hiitech
+*/
+
+/* =========================================================
+ * استایل‌های رسمی وب‌سایت استودیوی فناوری هایتک (HiiTECH)
+ * File: styles.css
+ * ========================================================= */
+:root {
+    --bg-deep: #06090e;
+    --bg-surface: rgba(13, 19, 27, 0.75);
+    --border-subtle: rgba(255, 255, 255, 0.07);
+    --gold-primary: #f5c451;
+    --gold-glow: rgba(245, 196, 81, 0.35);
+    --cyan-primary: #2dd4bf;
+    --cyan-glow: rgba(45, 212, 191, 0.3);
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-color: var(--bg-deep);
+    color: #f1f5f9;
+    font-family: 'Vazirmatn', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+    background-image:
+        radial-gradient(circle at 18% 18%, rgba(45, 212, 191, 0.065) 0%, transparent 38%),
+        radial-gradient(circle at 82% 14%, rgba(245, 196, 81, 0.055) 0%, transparent 36%),
+        radial-gradient(circle at 50% 75%, rgba(6, 182, 212, 0.04) 0%, transparent 45%);
+    min-height: 100vh;
+}
+
+/* اسکرول‌بار سفارشی سایبری */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #05080c;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 9999px;
+    border: 2px solid #05080c;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #f5c451;
+}
+
+/* ========================================== */
+/* استایل‌های انیمیشن تمام‌صفحه ریلود (Preloader) */
+/* ========================================== */
+#hiitech-preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background:
+        radial-gradient(circle at 50% 44%, rgba(245, 196, 81, 0.09) 0%, rgba(45, 212, 191, 0.06) 28%, rgba(5, 8, 12, 0.98) 70%),
+        #05080c;
+    backdrop-filter: blur(24px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.65s;
+    overflow: hidden;
+}
+
+#hiitech-preloader.preloader-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: scale(1.06);
+}
+
+/* شبکه شطرنجی سایبری پس‌زمینه ریلود */
+.preloader-cyber-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(to right, rgba(45, 212, 191, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(245, 196, 81, 0.03) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: radial-gradient(circle at 50% 50%, black 25%, transparent 78%);
+    -webkit-mask-image: radial-gradient(circle at 50% 50%, black 25%, transparent 78%);
+    pointer-events: none;
+}
+
+/* حلقه‌های مداری چرخان دور هسته ریلود */
+@keyframes spinClockwise {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spinCounterClockwise {
+    from {
+        transform: rotate(360deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes shockwaveRipple {
+    0% {
+        transform: scale(0.75);
+        opacity: 0.75;
+    }
+
+    100% {
+        transform: scale(1.75);
+        opacity: 0;
+    }
+}
+
+@keyframes circuitTraceDraw {
+    0% {
+        stroke-dashoffset: 120;
+        opacity: 0.3;
+    }
+
+    50% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+
+    100% {
+        stroke-dashoffset: -120;
+        opacity: 0.3;
+    }
+}
+
+.orbit-ring-cw {
+    animation: spinClockwise 11s linear infinite;
+    transform-origin: center;
+}
+
+.orbit-ring-ccw {
+    animation: spinCounterClockwise 8s linear infinite;
+    transform-origin: center;
+}
+
+.preloader-shockwave {
+    animation: shockwaveRipple 2.4s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+.preloader-shockwave-delayed {
+    animation: shockwaveRipple 2.4s cubic-bezier(0.16, 1, 0.3, 1) 1.2s infinite;
+}
+
+.preloader-trace-path {
+    stroke-dasharray: 120;
+    animation: circuitTraceDraw 2.6s ease-in-out infinite;
+}
+
+/* قاب ۱۸ پیکسلی مرکزی در صفحه ریلود */
+.preloader-emblem-box {
+    position: relative;
+    width: 92px;
+    height: 92px;
+    border-radius: 18px;
+    padding: 2.5px;
+    background: linear-gradient(135deg, #f5c451 0%, #2dd4bf 55%, #f5c451 100%);
+    box-shadow:
+        0 0 38px rgba(245, 196, 81, 0.45),
+        0 0 68px rgba(45, 212, 191, 0.25),
+        inset 0 0 18px rgba(245, 196, 81, 0.35);
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease;
+    z-index: 10;
+}
+
+#hiitech-preloader.preloader-burst .preloader-emblem-box {
+    transform: scale(1.22);
+    box-shadow:
+        0 0 75px rgba(245, 196, 81, 0.95),
+        0 0 120px rgba(45, 212, 191, 0.65);
+}
+
+/* نوار پیشرفت لیزری ریلود */
+.preloader-progress-track {
+    position: relative;
+    width: 100%;
+    height: 6px;
+    border-radius: 9999px;
+    background: rgba(15, 23, 35, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    overflow: visible;
+}
+
+.preloader-progress-fill {
+    position: relative;
+    height: 100%;
+    width: 0%;
+    border-radius: 9999px;
+    background: linear-gradient(90deg, #2dd4bf 0%, #f5c451 65%, #fef08a 100%);
+    box-shadow: 0 0 18px rgba(245, 196, 81, 0.65), 0 0 28px rgba(45, 212, 191, 0.4);
+    transition: width 0.08s linear;
+}
+
+.preloader-progress-spark {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    border-radius: 9999px;
+    background: #fffbeb;
+    box-shadow: 0 0 14px 4px #f5c451, 0 0 24px 8px rgba(45, 212, 191, 0.65);
+}
+
+/* نوار بارگذاری لیزری بالای صفحه هنگام تعویض تب‌ها */
+#top-reload-bar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 3px;
+    width: 0%;
+    z-index: 9990;
+    background: linear-gradient(90deg, #2dd4bf, #f5c451, #fef08a);
+    box-shadow: 0 0 16px rgba(245, 196, 81, 0.85), 0 0 24px rgba(45, 212, 191, 0.65);
+    opacity: 0;
+    transition: width 0.32s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease;
+    pointer-events: none;
+}
+
+/* پرتو اسکن سایبری هنگام تعویض تب یا ریلود */
+#cyber-scan-wave {
+    position: fixed;
+    inset: 0;
+    z-index: 9980;
+    pointer-events: none;
+    opacity: 0;
+    background: linear-gradient(180deg,
+            transparent 0%,
+            rgba(45, 212, 191, 0.06) 48%,
+            rgba(245, 196, 81, 0.14) 50%,
+            transparent 52%,
+            transparent 100%);
+    transform: translateY(-100%);
+}
+
+#cyber-scan-wave.scan-active {
+    animation: cyberScanSweep 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes cyberScanSweep {
+    0% {
+        opacity: 1;
+        transform: translateY(-100%);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+}
+
+/* انیمیشن ورود مرحله‌ای سه‌بعدی اجزای صفحه پس از اتمام ریلود */
+.reveal-stage {
+    opacity: 0;
+    transform: translateY(22px) scale(0.985);
+    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+}
+
+body.app-booted .reveal-stage {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* لوگوی هدر با انحنای ۱۸ پیکسل و درخشش نئونی ملایم طلایی-سیان */
+.hiitech-logo-frame {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    border-radius: 18px;
+    padding: 2px;
+    background: linear-gradient(135deg, rgba(245, 196, 81, 0.85), rgba(45, 212, 191, 0.65), rgba(245, 196, 81, 0.25));
+    box-shadow:
+        0 0 18px rgba(245, 196, 81, 0.28),
+        0 0 32px rgba(45, 212, 191, 0.14),
+        inset 0 0 10px rgba(245, 196, 81, 0.22);
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.hiitech-logo-frame:hover {
+    transform: translateY(-2px) scale(1.05) rotate(-2deg);
+    box-shadow:
+        0 0 25px rgba(245, 196, 81, 0.55),
+        0 0 42px rgba(45, 212, 191, 0.32),
+        inset 0 0 14px rgba(245, 196, 81, 0.4);
+}
+
+.hiitech-logo-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    background: radial-gradient(circle at 50% 42%, #1e293b 0%, #070b10 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.hiitech-logo-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+    display: block;
+}
+
+/* گرادینت متالیک نئونی برای تگ اصلی H1 */
+.cyber-h1-gradient {
+    background: linear-gradient(100deg, #fffdf5 0%, #fde68a 38%, #f5c451 68%, #22d3ee 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 12px 42px rgba(245, 196, 81, 0.16);
+}
+
+/* دکمه طلایی اصلی هایتک */
+.btn-cyber-gold {
+    background: linear-gradient(135deg, #f7ce68 0%, #eab308 100%);
+    color: #090d14;
+    font-weight: 700;
+    box-shadow: 0 8px 28px -4px rgba(245, 196, 81, 0.42), inset 0 1px 1px rgba(255, 255, 255, 0.45);
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.btn-cyber-gold:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 34px -3px rgba(245, 196, 81, 0.62), inset 0 1px 2px rgba(255, 255, 255, 0.65);
+    filter: brightness(1.05);
+}
+
+.btn-cyber-gold:active {
+    transform: translateY(0);
+}
+
+/* دکمه شیشه‌ای تیره */
+.btn-cyber-glass {
+    background: rgba(15, 23, 34, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #f8fafc;
+    transition: all 0.3s ease;
+}
+
+.btn-cyber-glass:hover {
+    background: rgba(25, 36, 52, 0.9);
+    border-color: rgba(245, 196, 81, 0.45);
+    box-shadow: 0 0 24px rgba(245, 196, 81, 0.12);
+    transform: translateY(-2px);
+}
+
+/* دکمه بازپخش انیمیشن ریلود در هدر */
+.btn-replay-reload {
+    background: rgba(15, 23, 34, 0.75);
+    border: 1px solid rgba(45, 212, 191, 0.28);
+    color: #5eead4;
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.btn-replay-reload:hover {
+    background: rgba(45, 212, 191, 0.12);
+    border-color: rgba(245, 196, 81, 0.55);
+    color: #fde08d;
+    box-shadow: 0 0 20px rgba(45, 212, 191, 0.22);
+    transform: translateY(-1px);
+}
+
+.btn-replay-reload:hover .reload-spin-icon {
+    transform: rotate(-180deg);
+}
+
+.reload-spin-icon {
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* بوم دایره‌ای هسته زنده هایتک */
+.core-portal-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 470px;
+    aspect-ratio: 1 / 1;
+    border-radius: 9999px;
+    background: radial-gradient(circle at 50% 50%, rgba(20, 30, 42, 0.65) 0%, rgba(7, 11, 16, 0.96) 72%, #05080c 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+        0 24px 70px rgba(0, 0, 0, 0.78),
+        0 0 55px rgba(45, 212, 191, 0.06),
+        inset 0 0 60px rgba(245, 196, 81, 0.05);
+    overflow: hidden;
+}
+
+.core-portal-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: 10px;
+    border-radius: 9999px;
+    border: 1px dashed rgba(45, 212, 191, 0.14);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* کارت‌های سه‌بعدی مجهز به فیزیک ژیروسکوپ (3D Tilt) */
+.tilt-card-container {
+    perspective: 1200px;
+}
+
+.tilt-card {
+    position: relative;
+    background: linear-gradient(160deg, rgba(16, 23, 33, 0.86) 0%, rgba(9, 14, 21, 0.92) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.075);
+    border-radius: 22px;
+    transform-style: preserve-3d;
+    transition: transform 0.16s cubic-bezier(0.03, 0.98, 0.52, 0.99), border-color 0.35s ease, box-shadow 0.35s ease;
+    will-change: transform;
+    overflow: hidden;
+    backdrop-filter: blur(16px);
+}
+
+.tilt-card:hover {
+    border-color: rgba(245, 196, 81, 0.32);
+    box-shadow:
+        0 22px 48px -12px rgba(0, 0, 0, 0.75),
+        0 0 32px -6px rgba(245, 196, 81, 0.12),
+        0 0 24px -8px rgba(45, 212, 191, 0.1);
+}
+
+.tilt-card.card-featured-gold {
+    border-color: rgba(245, 196, 81, 0.25);
+}
+
+/* بازتاب نور پویا روی کارت‌ها با حرکت ماوس */
+.tilt-glare {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(480px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            rgba(245, 196, 81, 0.085),
+            rgba(45, 212, 191, 0.04) 40%,
+            transparent 75%);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    z-index: 1;
+}
+
+.tilt-card:hover .tilt-glare {
+    opacity: 1;
+}
+
+.tilt-content {
+    position: relative;
+    z-index: 2;
+    transform: translateZ(24px);
+}
+
+/* انیمیشن‌های SVG داخل کارت‌ها */
+@keyframes pulseGlow {
+
+    0%,
+    100% {
+        opacity: 0.45;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.12);
+    }
+}
+
+@keyframes dashFlow {
+    to {
+        stroke-dashoffset: -24;
+    }
+}
+
+.svg-pulse-node {
+    animation: pulseGlow 2.8s ease-in-out infinite;
+    transform-origin: center;
+}
+
+.svg-circuit-flow {
+    stroke-dasharray: 4 4;
+    animation: dashFlow 1.8s linear infinite;
+}
+
+/* بنر شروع سریع پایین صفحه اصلی */
+.quick-start-banner {
+    background:
+        radial-gradient(circle at 55% 0%, rgba(45, 212, 191, 0.14) 0%, transparent 55%),
+        radial-gradient(circle at 20% 80%, rgba(245, 196, 81, 0.12) 0%, transparent 50%),
+        linear-gradient(180deg, rgba(14, 21, 31, 0.9) 0%, rgba(9, 13, 20, 0.95) 100%);
+    border: 1px solid rgba(45, 212, 191, 0.18);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* تب‌های ناوبری هدر */
+.nav-tab-btn {
+    position: relative;
+    padding: 0.48rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #94a3b8;
+    transition: all 0.25s ease;
+    border: 1px solid transparent;
+}
+
+.nav-tab-btn:hover {
+    color: #f8fafc;
+}
+
+.nav-tab-btn.active {
+    color: #f8fafc;
+    background: rgba(30, 41, 59, 0.65);
+    border-color: rgba(245, 196, 81, 0.28);
+    box-shadow: inset 0 0 12px rgba(245, 196, 81, 0.08);
+}
+
+/* ترنزیشن نرم بین صفحات SPA */
+.spa-view {
+    display: none;
+    animation: viewFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.spa-view.active {
+    display: block;
+}
+
+@keyframes viewFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* تگ‌های کپسولی داخل کارت‌ها */
+.tech-pill {
+    background: rgba(15, 23, 35, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #94a3b8;
+    font-size: 0.75rem;
+    padding: 0.32rem 0.78rem;
+    border-radius: 9999px;
+    transition: all 0.25s ease;
+}
+
+.tilt-card:hover .tech-pill {
+    border-color: rgba(255, 255, 255, 0.15);
+    color: #cbd5e1;
+}
+
+/* استایل‌های اختصاصی پنل مدیریت حرفه‌ای هایتک و آپلودر رسانه */
+.admin-subtab-btn {
+    padding: 0.65rem 1.15rem;
+    border-radius: 14px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #94a3b8;
+    background: rgba(15, 23, 35, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.admin-subtab-btn:hover {
+    color: #f8fafc;
+    border-color: rgba(245, 196, 81, 0.35);
+}
+
+.admin-subtab-btn.active {
+    color: #090d14;
+    background: linear-gradient(135deg, #f7ce68 0%, #eab308 100%);
+    border-color: #f5c451;
+    box-shadow: 0 8px 24px -4px rgba(245, 196, 81, 0.45);
+}
+
+.dropzone-box {
+    border: 2px dashed rgba(45, 212, 191, 0.35);
+    background: radial-gradient(circle at 50% 50%, rgba(45, 212, 191, 0.06) 0%, rgba(9, 14, 21, 0.85) 100%);
+    transition: all 0.3s ease;
+}
+
+.dropzone-box.dragover,
+.dropzone-box:hover {
+    border-color: #f5c451;
+    background: radial-gradient(circle at 50% 50%, rgba(245, 196, 81, 0.12) 0%, rgba(9, 14, 21, 0.92) 100%);
+}
+
+/* اعلان شناور سایبری (Toast) */
+#cyber-toast-container {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+}
+
+.cyber-toast {
+    pointer-events: auto;
+    background: rgba(11, 17, 26, 0.96);
+    border: 1px solid rgba(245, 196, 81, 0.45);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8), 0 0 24px rgba(245, 196, 81, 0.18);
+    backdrop-filter: blur(16px);
+    padding: 12px 18px;
+    border-radius: 16px;
+    color: #f8fafc;
+    font-size: 0.82rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: toastSlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes toastSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
