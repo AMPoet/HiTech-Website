@@ -930,12 +930,7 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
       <!-- دکمه پکیج ۳ فایلی دیپلوی + پنل مدیریت + بازپخش ریلود + ارتباط با ما و منوی موبایل -->
       <div class="flex items-center gap-2">
         <!-- دکمه دریافت ۳ فایل مجزا (HTML + CSS + JS) برای دیپلوی -->
-        <button type="button" onclick="openDeploy3FilesModal()" title="دانلود ۳ فایل مجزا (index.html + styles.css + app.js) برای دیپلوی" class="px-3.5 py-2.5 rounded-full text-xs font-bold bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 border border-emerald-400/40 transition inline-flex items-center gap-1.5 shadow-sm">
-          <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-          </svg>
-          <span>دریافت ۳ فایل دیپلوی</span>
-        </button>
+    
 
         <!-- دکمه پنل مدیریت حرفه‌ای هایتک (CMS & Netlify) -->
         <button type="button" onclick="switchTab('admin')" data-tab-btn="admin" title="پنل مدیریت محتوا و انتشار در Netlify" class="px-3.5 py-2.5 rounded-full text-xs font-bold bg-cyberGold-400/10 hover:bg-cyberGold-400/20 text-cyberGold-300 border border-cyberGold-400/35 transition inline-flex items-center gap-1.5 shadow-sm">
@@ -943,16 +938,9 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
           </svg>
-          <span class="hidden sm:inline">پنل مدیریت</span>
+          <span class="hidden sm:inline">پنل کاربری</span>
         </button>
 
-        <!-- دکمه بازپخش انیمیشن ریلود -->
-        <button type="button" onclick="replaySystemReload()" title="بازپخش انیمیشن ریلود هسته هایتک" aria-label="بازپخش انیمیشن ریلود" class="btn-replay-reload px-3 py-2.5 rounded-full text-xs font-semibold inline-flex items-center gap-1.5">
-          <svg class="w-4 h-4 reload-spin-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
-          </svg>
-          <span class="hidden xl:inline">بازپخش ریلود</span>
-        </button>
 
         <button type="button" onclick="switchTab('contact')" data-tab-btn="contact" class="btn-cyber-gold px-4 sm:px-5 py-2.5 rounded-full text-xs sm:text-sm tracking-tight">
           ارتباط با ما
